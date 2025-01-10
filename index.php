@@ -1,6 +1,6 @@
 <?php
 
-// install env
+// set env
 require_once __DIR__ . '/protected/vendor/autoload.php'; // Include Composer autoloader
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
