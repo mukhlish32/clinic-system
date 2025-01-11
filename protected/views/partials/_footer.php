@@ -4,7 +4,7 @@
             <div class="col-lg-12">
                 <div class="text-center">
                     <p class="mb-0 text-muted">
-                        &copy; <span id="currentYear" aria-label="Current year"></span> | Vendorbest. All rights reserved.
+                        &copy; <span id="currentYear" aria-label="Current year"></span> | Sistem Informasi Klinik. All rights reserved.
                     </p>
                 </div>
             </div>

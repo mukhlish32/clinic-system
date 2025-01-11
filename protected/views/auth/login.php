@@ -25,7 +25,7 @@
                         </a>
                     </div>
                     <div class="p-2 mt-4">
-                        <? $this->renderPartial('//partials/notifications'); ?>
+                        <?php $this->renderPartial('//partials/_notifications'); ?>
 
                         <?php
                         $form = $this->beginWidget('CActiveForm', array(
