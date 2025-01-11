@@ -8,7 +8,7 @@ class m250110_035607_create_pasien_table extends CDbMigration
             'id' => 'pk',
             'nama' => 'string NOT NULL',
 			'nik' => 'string',
-            'alamat' => 'text',
+            'no_bpjs' => 'string',
             'telp' => 'string',
             'email' => 'string',
             'tgl_lahir' => 'date',
