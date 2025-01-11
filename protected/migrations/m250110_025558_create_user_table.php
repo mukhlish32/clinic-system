@@ -23,6 +23,7 @@ class m250110_025558_create_user_table extends CDbMigration
 
 	public function down()
 	{
+		$this->dropForeignKey('fk_user_role', 'user');
 		$this->dropTable('user');
 	}
 

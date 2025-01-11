@@ -23,6 +23,7 @@ class m250110_035058_create_wilayah_table extends CDbMigration
 
     public function down()
     {
+        $this->dropIndex('idx_kode_pos', 'wilayah');
         $this->dropTable('wilayah');
     }
 
