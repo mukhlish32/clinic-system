@@ -4,9 +4,9 @@
 
 <head>
     <meta charset="utf-8" />
-    <title><?php echo CHtml::encode($this->pageTitle); ?> | Vendorbest</title>
+    <title><?php echo CHtml::encode($this->pageTitle); ?> | Sistem Informasi Klinik</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Vendorbest" name="description" />
+    <meta content="Sistem Informasi Klinik" name="description" />
     <meta content="Muhammad Mukhlish Syarif" name="author" />
 
     <!-- App favicon -->
@@ -53,7 +53,7 @@
         <!-- End auth page content -->
 
         <!-- Footer -->
-        <?php $this->renderPartial('//partials/footer'); ?>
+        <?php $this->renderPartial('//partials/_footer'); ?>
     </div>
 
     <!-- JAVASCRIPT -->
