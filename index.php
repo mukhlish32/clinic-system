@@ -1,7 +1,7 @@
 <?php
 
 // set env
-require_once __DIR__ . '/protected/vendor/autoload.php'; // Include Composer autoloader
+require_once __DIR__ . '/protected/vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 $dotenv->required(['DB_HOST', 'DB_NAME', 'DB_USER', 'DB_PASSWORD']);
