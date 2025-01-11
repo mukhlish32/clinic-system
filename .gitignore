@@ -1,5 +1,7 @@
+.git
 .env
 .vscode
 /assets/*
 !/assets/
 !/assets/velzon
+!/assets/js
