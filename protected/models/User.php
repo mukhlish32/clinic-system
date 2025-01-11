@@ -1,11 +1,10 @@
 <?php
 
-class User extends CActiveRecord
+class User extends CrudModel
 {
-    public $created_by;
-    public $updated_by;
+    public $confirm_password, $pegawai_id;
 
-    public static function model($className=__CLASS__)
+    public static function model($className = __CLASS__)
     {
         return parent::model($className);
     }
@@ -17,38 +16,44 @@ class User extends CActiveRecord
 
     public function rules()
     {
-        return array(
-            array('username, password, role_id', 'required'),
-            array('email', 'email'),
-        );
+        return [
+            ['username, password, role_id', 'required'],
+            ['email', 'email'],
+            ['confirm_password', 'compare', 'compareAttribute' => 'password', 'message' => 'Konfirmasi password tidak cocok.'],
+        ];
     }
 
     public function relations()
     {
-        return array(
-            'role' => array(self::BELONGS_TO, 'Role', 'role_id'),
-        );
+        return [
+            'role' => [self::BELONGS_TO, 'Role', 'role_id'],
+            'pegawai' => [self::HAS_ONE, 'Pegawai', 'user_id'],
+        ];
+    }
+
+
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'username' => 'Username',
+            'password' => 'Password',
+            'confirm_password' => 'Konfirmasi Password',
+            'email' => 'Email',
+            'role_id' => 'Role',
+            'pegawai_id' => 'Pegawai',
+            'status' => 'Status',
+            'created_by' => 'Dibuat Oleh',
+            'updated_by' => 'Diperbarui Oleh',
+        ];
     }
 
     protected function beforeSave()
     {
-        if ($this->isNewRecord) {
-            $this->created_at = new CDbExpression('NOW()');
-            $this->created_by = Yii::app()->user->name;
-        } else {
-            $this->updated_at = new CDbExpression('NOW()');
-            $this->updated_by = Yii::app()->user->name;
+        if ($this->isNewRecord || $this->password !== $this->getOldAttribute('password')) {
+            $this->password = CPasswordHelper::hashPassword($this->password);
         }
 
         return parent::beforeSave();
-    }
-
-    protected function beforeDelete()
-    {
-        $this->deleted_at = new CDbExpression('NOW()');
-        $this->updated_by = Yii::app()->user->name;
-        $this->save();
-
-        return parent::beforeDelete();
     }
 }

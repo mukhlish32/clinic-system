@@ -1,11 +1,8 @@
 <?php
 
-class Pegawai extends CActiveRecord
+class Pegawai extends CrudModel
 {
-    public $created_by;
-    public $updated_by;
-
-    public static function model($className=__CLASS__)
+    public static function model($className = __CLASS__)
     {
         return parent::model($className);
     }
@@ -17,38 +14,54 @@ class Pegawai extends CActiveRecord
 
     public function rules()
     {
-        return array(
-            array('nama, alamat, telepon, email, jenis_kelamin', 'required'),
-            array('email', 'email'),
-        );
+        return [
+            ['nama, email', 'required'],
+            ['email', 'email'],
+            ['telp', 'length', 'max' => 15],
+            ['kode_pos', 'length', 'max' => 5],
+            ['user_id', 'numerical', 'integerOnly' => true],
+            ['created_at, updated_at, deleted_at', 'safe'],
+            ['nama, nik, nip, alamat, telp, email, jns_kelamin, tgl_lahir, jabatan, kelurahan, kecamatan, kota, provinsi, kode_pos, status, created_by, updated_by', 'safe'],
+            ['id', 'safe', 'on' => 'search'],
+        ];
     }
 
     public function relations()
     {
-        return array(
+        return [
             'user' => array(self::BELONGS_TO, 'User', 'user_id'),
-        );
+        ];
     }
 
-    protected function beforeSave()
+    public function attributeLabels()
     {
-        if ($this->isNewRecord) {
-            $this->created_at = new CDbExpression('NOW()');
-            $this->created_by = Yii::app()->user->name;
-        } else {
-            $this->updated_at = new CDbExpression('NOW()');
-            $this->updated_by = Yii::app()->user->name;
+        return [
+            'id' => 'ID',
+            'nama' => 'Nama',
+            'nik' => 'No. NIK',
+            'nip' => 'No. NIP',
+            'alamat' => 'Alamat',
+            'telp' => 'Telepon',
+            'email' => 'Email',
+            'jns_kelamin' => 'Jenis Kelamin',
+            'tanggal_lahir' => 'Tanggal Lahir',
+            'jabatan' => 'Jabatan',
+            'kelurahan' => 'Kelurahan',
+            'kecamatan' => 'Kecamatan',
+            'kota' => 'Kota',
+            'provinsi' => 'Provinsi',
+            'kode_pos' => 'Kode Pos',
+            'status' => 'Status',
+            'created_by' => 'Dibuat Oleh',
+            'updated_by' => 'Diperbarui Oleh',
+        ];
+    }
+
+    public function getStatus()
+    {
+        if ($this->user_id === null || $this->status == 0 || $this->deleted_at !== null) {
+            return 0;
         }
-
-        return parent::beforeSave();
-    }
-
-    protected function beforeDelete()
-    {
-        $this->deleted_at = new CDbExpression('NOW()');
-        $this->updated_by = Yii::app()->user->name;
-        $this->save();
-
-        return parent::beforeDelete();
+        return 1;
     }
 }
