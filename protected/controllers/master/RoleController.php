@@ -3,6 +3,7 @@
 class RoleController extends Controller
 {
     public $layout = '//layouts/app';
+
     public function actionIndex()
     {
         if (isset($_GET['ajax']) && $_GET['ajax'] == 1) {
@@ -38,7 +39,7 @@ class RoleController extends Controller
             $data[] = [
                 'nama' => $role->nama,
                 'keterangan' => $role->keterangan,
-                'aksi' => $this->renderPartial('//partials/actions', [
+                'aksi' => $this->renderPartial('//partials/_actions', [
                     'model' => $role,
                     'location' => 'master/role'
                 ], true),
@@ -66,7 +67,10 @@ class RoleController extends Controller
         if (isset($_POST['Role'])) {
             $model->attributes = $_POST['Role'];
             if ($model->save()) {
-                $this->redirect(array('view', 'id' => $model->id));
+                Yii::app()->user->setFlash('success', 'Role berhasil ditambahkan.');
+                $this->redirect(array('index'));
+            } else {
+                Yii::app()->user->setFlash('error', 'Gagal menambahkan role.');
             }
         }
 
@@ -80,7 +84,10 @@ class RoleController extends Controller
         if (isset($_POST['Role'])) {
             $model->attributes = $_POST['Role'];
             if ($model->save()) {
-                $this->redirect(array('view', 'id' => $model->id));
+                Yii::app()->user->setFlash('success', 'Role ' . $model->nama . ' berhasil diperbarui.');
+                $this->redirect(array('index'));
+            } else {
+                Yii::app()->user->setFlash('error', 'Gagal memperbarui role.');
             }
         }
 
@@ -95,7 +102,11 @@ class RoleController extends Controller
 
         $model->deleted_at = new CDbExpression('NOW()');
         $model->updated_by = Yii::app()->user->name;
-        $model->save(false);
+        if ($model->save(false)) {
+            Yii::app()->user->setFlash('success', 'Role ' . $model->nama . '  berhasil dihapus.');
+        } else {
+            Yii::app()->user->setFlash('error', 'Gagal menghapus role.');
+        }
 
         if (isset($_GET['ajax'])) {
             echo CJSON::encode(['status' => 'success', 'message' => 'Role berhasil dihapus']);

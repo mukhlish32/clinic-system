@@ -25,19 +25,13 @@
                 </div>
 
                 <div class="card-body">
-                    <!-- Display errors if there are any -->
-                    <?php if ($model->hasErrors()): ?>
-                        <div class="alert alert-danger">
-                            <?php echo CHtml::errorSummary($model); ?>
-                        </div>
-                    <?php endif; ?>
-
+                    <?php $this->renderPartial('//partials/_notifications'); ?>
                     <div class="row mb-3">
                         <div class="col-md-4">
                             <strong>Nama</strong>
                         </div>
                         <div class="col-md-8">
-                            <?php echo CHtml::textField('nama', CHtml::encode($model->nama), ['class' => 'form-control', 'readonly' => true]); ?>
+                            <?php echo CHtml::textField('nama', CHtml::encode($model->nama), ['class' => 'form-control bg-light', 'readonly' => true]); ?>
                         </div>
                     </div>
 
@@ -46,12 +40,12 @@
                             <strong>Keterangan</strong>
                         </div>
                         <div class="col-md-8">
-                            <?php echo CHtml::textArea('keterangan', CHtml::encode($model->keterangan), ['class' => 'form-control', 'readonly' => true]); ?>
+                            <?php echo CHtml::textArea('keterangan', CHtml::encode($model->keterangan), ['class' => 'form-control bg-light', 'readonly' => true]); ?>
                         </div>
                     </div>
 
                     <!-- Render action buttons from the partial -->
-                    <?php $this->renderPartial('//partials/actions-view', [
+                    <?php $this->renderPartial('//partials/_actions-view', [
                         'model' => $model,
                         'location' => 'master/role',
                     ]); ?>

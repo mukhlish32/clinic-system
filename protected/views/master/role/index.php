@@ -11,6 +11,7 @@
                             <a href="javascript:void(0);">Master</a>
                         </li>
                         <li class="breadcrumb-item active">Role</li>
+                        <li class="breadcrumb-item active">List</li>
                     </ol>
                 </div>
             </div>
@@ -28,29 +29,21 @@
         </div>
 
         <div class="card-body">
-    <div class="table-responsive" style="max-width: 100%; overflow-x: auto;">
-        <table id="role-table" class="table nowrap align-middle" style="width: 100%; table-layout: auto;">
-            <thead class="table-active">
-                <tr>
-                    <th>Nama</th>
-                    <th data-ordering="false">Keterangan</th>
-                    <th width="20%">Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Data rows go here -->
-            </tbody>
-        </table>
+            <?php $this->renderPartial('//partials/_notifications'); ?>
+            <div class="table-responsive" style="max-width: 100%; overflow-x: auto;">
+                <table id="role-table" class="table table-bordered nowrap align-middle" style="width: 100%; table-layout: auto;">
+                    <thead class="table-active">
+                        <tr>
+                            <th>Nama</th>
+                            <th data-ordering="false">Keterangan</th>
+                            <th width="20%">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
     </div>
-</div>
-
-
-
-        <!-- </div> -->
-
-    </div>
-    <!-- </div> -->
-
 </div>
 
 

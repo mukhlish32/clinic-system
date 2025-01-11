@@ -25,12 +25,7 @@
                 </div>
 
                 <div class="card-body">
-                    <?php if ($model->hasErrors()): ?>
-                        <div class="alert alert-danger">
-                            <?php echo CHtml::errorSummary($model); ?>
-                        </div>
-                    <?php endif; ?>
-
+                    <?php $this->renderPartial('//partials/_notifications'); ?>
                     <?php echo $this->renderPartial('_form', array('model' => $model)); ?>
                 </div>
             </div>
