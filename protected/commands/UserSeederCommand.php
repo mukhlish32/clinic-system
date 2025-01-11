@@ -13,10 +13,10 @@ class UserSeederCommand extends CConsoleCommand
     protected function createRoles()
     {
         $roles = array(
-            array('name' => 'admin', 'keterangan' => 'Administrator', 'created_at' => new CDbExpression('NOW()'), 'updated_at' => new CDbExpression('NOW()')),
-            array('name' => 'dokter', 'keterangan' => 'Dokter', 'created_at' => new CDbExpression('NOW()'), 'updated_at' => new CDbExpression('NOW()')),
-            array('name' => 'perawat', 'keterangan' => 'Perawat', 'created_at' => new CDbExpression('NOW()'), 'updated_at' => new CDbExpression('NOW()')),
-            array('name' => 'pasien', 'keterangan' => 'Pasien', 'created_at' => new CDbExpression('NOW()'), 'updated_at' => new CDbExpression('NOW()')),
+            array('nama' => 'admin', 'keterangan' => 'Administrator', 'created_at' => new CDbExpression('NOW()'), 'updated_at' => new CDbExpression('NOW()')),
+            array('nama' => 'dokter', 'keterangan' => 'Dokter', 'created_at' => new CDbExpression('NOW()'), 'updated_at' => new CDbExpression('NOW()')),
+            array('nama' => 'perawat', 'keterangan' => 'Perawat', 'created_at' => new CDbExpression('NOW()'), 'updated_at' => new CDbExpression('NOW()')),
+            array('nama' => 'pasien', 'keterangan' => 'Pasien', 'created_at' => new CDbExpression('NOW()'), 'updated_at' => new CDbExpression('NOW()')),
         );
 
         foreach ($roles as $role) {
@@ -26,12 +26,12 @@ class UserSeederCommand extends CConsoleCommand
 
     protected function createAdminUser()
     {
-        $role = Yii::app()->db->createCommand()->select('id')->from('role')->where('name=:name', array(':name' => 'admin'))->queryRow();
+        $role = Yii::app()->db->createCommand()->select('id')->from('role')->where('nama=:nama', array(':nama' => 'admin'))->queryRow();
 
         $data = array(
             'username' => 'admin',
             'password' => md5('admin123@'),
-            'email' => 'admin@klinik.com',
+            'email' => 'admin2@klinik.com',
             'role_id' => $role['id'],
             'created_at' => new CDbExpression('NOW()'),
             'updated_at' => new CDbExpression('NOW()'),
@@ -52,7 +52,6 @@ class UserSeederCommand extends CConsoleCommand
             'jenis_kelamin' => 'L',
             'tanggal_lahir' => '1995-01-01',
             'jabatan' => 'Admin',
-            'status' => 'Aktif',
             'created_at' => new CDbExpression('NOW()'),
             'updated_at' => new CDbExpression('NOW()'),
             'user_id' => $user['id'],
