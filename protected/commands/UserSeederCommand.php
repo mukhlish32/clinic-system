@@ -5,6 +5,7 @@ class UserSeederCommand extends CConsoleCommand
     public function run($args)
     {
         $this->createRoles();
+        $this->createPermissions();
         $this->createAdminUser();
         $this->createPegawaiForAdmin();
         echo "UserSeeder process completed.\n";
@@ -21,6 +22,65 @@ class UserSeederCommand extends CConsoleCommand
 
         foreach ($roles as $role) {
             Yii::app()->db->createCommand()->insert('role', $role);
+        }
+    }
+
+    protected function createPermissions()
+    {
+        $menuItems = [
+            // Dashboard menu
+            // [
+            //     'menu' => 'auth/dashboard',
+            //     'actions' => null,
+            // ],
+            // Master menu
+            [
+                'menu' => 'master/role',
+                'actions' => 'index,view,create,update,delete,permission',
+            ],
+            [
+                'menu' => 'master/wilayah',
+                'actions' => 'index,view,create,update,delete',
+            ],
+            [
+                'menu' => 'master/pegawai',
+                'actions' => 'index,view,create,update,delete',
+            ],
+            [
+                'menu' => 'master/user',
+                'actions' => 'index,view,create,update,delete',
+            ],
+            [
+                'menu' => 'master/tindakan',
+                'actions' => 'index,view,create,update,delete',
+            ],
+            [
+                'menu' => 'master/obat',
+                'actions' => 'index,view,create,update,delete',
+            ],
+            [
+                'menu' => 'transaksi/pasien',
+                'actions' => 'index,view,create,update,delete,register',
+            ],
+            [
+                'menu' => 'transaksi/transaksi',
+                'actions' => 'index,view,createTindakan,updateTindakan,createObat,updateObat,setSelesai,setBatal,tagihan',
+            ],
+            [
+                'menu' => 'transaksi/laporan',
+                'actions' => 'index',
+            ]
+        ];
+
+        $role = Yii::app()->db->createCommand()->select('id')->from('role')->where('nama=:nama', array(':nama' => 'admin'))->queryRow();
+        foreach ($menuItems as $item) {
+            Yii::app()->db->createCommand()->insert('permission', [
+                'role_id' => $role['id'],
+                'menu' => $item['menu'],
+                'actions' => $item['actions'],
+                'created_at' => new CDbExpression('NOW()'),
+                'updated_at' => new CDbExpression('NOW()')
+            ]);
         }
     }
 

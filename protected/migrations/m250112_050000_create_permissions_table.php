@@ -5,7 +5,6 @@ class m250112_050000_create_permissions_table extends CDbMigration
     public function up()
     {
         $this->createTable('permission', array(
-            'id' => 'pk',
             'role_id' => 'integer NOT NULL',
             'menu' => 'string NOT NULL',
             'actions' => 'text NOT NULL',
