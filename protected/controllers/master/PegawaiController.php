@@ -3,10 +3,12 @@
 class PegawaiController extends Controller
 {
     public $layout = '//layouts/app';
+    protected $srbac = 'master/pegawai';
 
     // Index action to list all Pegawai
     public function actionIndex()
     {
+        $this->requireAccess($this->srbac, 'index');
         if (isset($_GET['ajax']) && $_GET['ajax'] == 1) {
             $this->fetchAjax();
         }

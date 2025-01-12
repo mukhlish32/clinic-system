@@ -3,9 +3,11 @@
 class RoleController extends Controller
 {
     public $layout = '//layouts/app';
+    protected $srbac = 'master/role';
 
     public function actionIndex()
     {
+        $this->requireAccess($this->srbac, 'index');
         if (isset($_GET['ajax']) && $_GET['ajax'] == 1) {
             $this->fetchAjax();
         }
@@ -39,7 +41,7 @@ class RoleController extends Controller
             $data[] = [
                 'nama' => $role->nama,
                 'keterangan' => $role->keterangan,
-                'aksi' => $this->renderPartial('//partials/_actions', [
+                'aksi' => $this->renderPartial('_actions', [
                     'model' => $role,
                     'location' => 'master/role'
                 ], true),
@@ -57,11 +59,13 @@ class RoleController extends Controller
 
     public function actionView($id)
     {
+        $this->requireAccess($this->srbac, 'view');
         $this->render('view', array('model' => $this->loadModel($id)));
     }
 
     public function actionCreate()
     {
+        $this->requireAccess($this->srbac, 'create');
         $model = new Role;
 
         if (isset($_POST['Role'])) {
@@ -79,6 +83,7 @@ class RoleController extends Controller
 
     public function actionUpdate($id)
     {
+        $this->requireAccess($this->srbac, 'update');
         $model = $this->loadModel($id);
 
         if (isset($_POST['Role'])) {
@@ -96,6 +101,7 @@ class RoleController extends Controller
 
     public function actionDelete($id)
     {
+        $this->requireAccess($this->srbac, 'delete');
         $model = $this->loadModel($id);
 
         $model->skipBeforeSave = true;
@@ -124,5 +130,42 @@ class RoleController extends Controller
             throw new CHttpException(404, 'The requested page does not exist.');
         }
         return $model;
+    }
+
+    public function actionPermissions($id)
+    {
+        $this->requireAccess($this->srbac, 'permission');
+        $model = $this->loadModel($id);
+        $permissions = MenuItem::getMenuItems();
+        $existingPermissions = Permission::model()->findAllByAttributes(['role_id' => $id]);
+
+        $existingPermissionsArr = [];
+        foreach ($existingPermissions as $permission) {
+            $existingPermissionsArr[$permission->menu] = explode(',', $permission->actions);
+        }
+
+        if (isset($_POST['permissions'])) {
+            $this->savePermissions($id, $_POST['permissions']);
+            Yii::app()->user->setFlash('success', 'Hak akses berhasil diubah.');
+            $this->redirect(['index']);
+        }
+
+        $this->render('permissions', [
+            'model' => $model,
+            'permissions' => $permissions,
+            'existingPermissions' => $existingPermissionsArr,
+        ]);
+    }
+
+    protected function savePermissions($roleId, $permissions)
+    {
+        Permission::model()->deleteAllByAttributes(['role_id' => $roleId]);
+        foreach ($permissions as $menu => $actions) {
+            $permission = new Permission();
+            $permission->role_id = $roleId;
+            $permission->menu = $menu;
+            $permission->actions = implode(',', $actions);
+            $permission->save();
+        }
     }
 }

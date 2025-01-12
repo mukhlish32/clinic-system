@@ -3,9 +3,11 @@
 class LaporanController extends Controller
 {
     public $layout = '//layouts/app';
+    protected $srbac = 'transaksi/laporan';
 
     public function actionIndex()
     {
+        $this->requireAccess($this->srbac, 'index');
         // Default values for date range and gender
         $startDate = isset($_GET['start_date']) ? $_GET['start_date'] : date('Y-m-01');
         $endDate = isset($_GET['end_date']) ? $_GET['end_date'] : date('Y-m-d');

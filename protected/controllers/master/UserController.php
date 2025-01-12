@@ -3,9 +3,11 @@
 class UserController extends Controller
 {
     public $layout = '//layouts/app';
+    protected $srbac = 'master/user';
 
     public function actionIndex()
     {
+        $this->requireAccess($this->srbac, 'index');
         if (isset($_GET['ajax']) && $_GET['ajax'] == 1) {
             $this->fetchAjax();
         }
@@ -94,11 +96,13 @@ class UserController extends Controller
 
     public function actionView($id)
     {
+        $this->requireAccess($this->srbac, 'view');
         $this->render('view', array('model' => $this->loadModel($id)));
     }
 
     public function actionCreate()
     {
+        $this->requireAccess($this->srbac, 'create');
         $model = new User;
 
         if (isset($_POST['User'])) {
@@ -135,6 +139,7 @@ class UserController extends Controller
 
     public function actionUpdate($id)
     {
+        $this->requireAccess($this->srbac, 'update');
         $model = $this->loadModel($id);
 
         if (isset($_POST['User'])) {
@@ -159,6 +164,7 @@ class UserController extends Controller
 
     public function actionDelete($id)
     {
+        $this->requireAccess($this->srbac, 'delete');
         $model = $this->loadModel($id);
 
         if ($model->delete()) {

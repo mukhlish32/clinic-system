@@ -3,9 +3,11 @@
 class ObatController extends Controller
 {
     public $layout = '//layouts/app';
+    protected $srbac = 'master/obat';
 
     public function actionIndex()
     {
+        $this->requireAccess($this->srbac, 'index');
         if (isset($_GET['ajax']) && $_GET['ajax'] == 1) {
             $this->fetchAjax();
         }
@@ -63,11 +65,13 @@ class ObatController extends Controller
 
     public function actionView($id)
     {
+        $this->requireAccess($this->srbac, 'view');
         $this->render('view', array('model' => $this->loadModel($id)));
     }
 
     public function actionCreate()
     {
+        $this->requireAccess($this->srbac, 'create');
         $model = new Obat;
 
         if (isset($_POST['Obat'])) {
@@ -85,6 +89,7 @@ class ObatController extends Controller
 
     public function actionUpdate($id)
     {
+        $this->requireAccess($this->srbac, 'update');
         $model = $this->loadModel($id);
 
         if (isset($_POST['Obat'])) {
@@ -102,6 +107,7 @@ class ObatController extends Controller
 
     public function actionDelete($id)
     {
+        $this->requireAccess($this->srbac, 'delete');
         $model = $this->loadModel($id);
 
         $model->skipBeforeSave = true;

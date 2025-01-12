@@ -4,9 +4,11 @@ class TransaksiController extends Controller
 {
 
     public $layout = '//layouts/app';
+    protected $srbac = 'transaksi/transaksi';
 
     public function actionIndex()
     {
+        $this->requireAccess($this->srbac, 'index');
         if (isset($_GET['ajax']) && $_GET['ajax'] == 1) {
             $this->fetchAjax();
         }
@@ -79,8 +81,9 @@ class TransaksiController extends Controller
         Yii::app()->end();
     }
 
-    public function actionTindakan($id)
+    public function actionView($id)
     {
+        $this->requireAccess($this->srbac, 'view');
         $pasienDaftar = PasienDaftar::model()->findByPk($id);
         if (!$pasienDaftar) {
             throw new CHttpException(404, 'Pasien tidak ditemukan.');
@@ -96,7 +99,7 @@ class TransaksiController extends Controller
             ['order' => 'tgl_transaksi DESC']
         );
 
-        $this->render('tindakan', [
+        $this->render('view', [
             'pasienDaftar' => $pasienDaftar,
             'listTindakan' => $listTindakan,
             'listObat' => $listObat,
@@ -105,6 +108,7 @@ class TransaksiController extends Controller
 
     public function actionCreateTindakan($norm)
     {
+        $this->requireAccess($this->srbac, 'createTindakan');
         $model = new PasienTindakan;
         $model->jumlah = 1;
         $pasienDaftar = PasienDaftar::model()->findByPk($norm);
@@ -120,7 +124,7 @@ class TransaksiController extends Controller
 
             if ($model->save()) {
                 Yii::app()->user->setFlash('success', 'Tindakan pasien berhasil ditambahkan.');
-                $this->redirect(['tindakan', 'id' => $norm]);
+                $this->redirect(['view', 'id' => $norm]);
             } else {
                 $errors = $model->getErrors();
                 var_dump($errors);
@@ -134,6 +138,7 @@ class TransaksiController extends Controller
 
     public function actionUpdateTindakan($norm, $id)
     {
+        $this->requireAccess($this->srbac, 'updateTindakan');
         $model = PasienTindakan::model()->findByPk($id);
         $pasienDaftar = PasienDaftar::model()->findByPk($norm);
 
@@ -145,7 +150,7 @@ class TransaksiController extends Controller
             $model->attributes = $_POST['PasienTindakan'];
             if ($model->save()) {
                 Yii::app()->user->setFlash('success', 'Tindakan pasien berhasil diubah.');
-                $this->redirect(['tindakan', 'id' => $model->pasien_daftar_id]);
+                $this->redirect(['view', 'id' => $model->pasien_daftar_id]);
             } else {
                 Yii::app()->user->setFlash('error', 'Gagal mengubah tindakan pasien.');
             }
@@ -156,6 +161,7 @@ class TransaksiController extends Controller
 
     public function actionCreateObat($norm)
     {
+        $this->requireAccess($this->srbac, 'createObat');
         $model = new PasienObat;
         $model->jumlah = 1;
         $pasienDaftar = PasienDaftar::model()->findByPk($norm);
@@ -170,7 +176,7 @@ class TransaksiController extends Controller
 
             if ($model->save()) {
                 Yii::app()->user->setFlash('success', 'Obat pasien berhasil ditambahkan.');
-                $this->redirect(['tindakan', 'id' => $norm]);
+                $this->redirect(['view', 'id' => $norm]);
             } else {
                 $errors = $model->getErrors();
                 var_dump($errors);
@@ -183,6 +189,7 @@ class TransaksiController extends Controller
 
     public function actionUpdateObat($norm, $id)
     {
+        $this->requireAccess($this->srbac, 'updateObat');
         $model = PasienObat::model()->findByPk($id);
         $pasienDaftar = PasienDaftar::model()->findByPk($norm);
 
@@ -194,7 +201,7 @@ class TransaksiController extends Controller
             $model->attributes = $_POST['Obat'];
             if ($model->save()) {
                 Yii::app()->user->setFlash('success', 'Obat pasien berhasil diubah.');
-                $this->redirect(['tindakan', 'id' => $model->pasien_daftar_id]);
+                $this->redirect(['view', 'id' => $model->pasien_daftar_id]);
             } else {
                 $errors = $model->getErrors();
                 var_dump($errors);
@@ -207,6 +214,7 @@ class TransaksiController extends Controller
 
     public function actionSelesai($id)
     {
+        $this->requireAccess($this->srbac, 'setSelesai');
         $model = PasienDaftar::model()->findByPk($id);
         if (!$model) {
             throw new CHttpException(404, 'Pasien tidak ditemukan.');
@@ -220,6 +228,7 @@ class TransaksiController extends Controller
 
     public function actionBatal($id)
     {
+        $this->requireAccess($this->srbac, 'setBatal');
         $model = PasienDaftar::model()->findByPk($id);
         if (!$model) {
             throw new CHttpException(404, 'Pasien tidak ditemukan.');
@@ -261,6 +270,7 @@ class TransaksiController extends Controller
 
     public function actionTagihan($id)
     {
+        $this->requireAccess($this->srbac, 'tagihan');
         $pasienDaftar = PasienDaftar::model()->findByPk($id);
         $pasien = $pasienDaftar->pasien;
 
