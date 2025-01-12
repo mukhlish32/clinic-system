@@ -87,22 +87,12 @@
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a href="<?php echo Yii::app()->createUrl('transaksi/pasien'); ?>" class="nav-link <?php echo (Yii::app()->controller->id == 'transaksi/pasien') ? 'active' : ''; ?>">
-                                    Data Pasien
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?php echo Yii::app()->createUrl('transaksi/pendaftaran'); ?>" class="nav-link <?php echo (Yii::app()->controller->id == 'transaksi/pendaftaran') ? 'active' : ''; ?>">
-                                    Pendaftaran
+                                    Pasien & Pendaftaran
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="<?php echo Yii::app()->createUrl('transaksi/transaksi'); ?>" class="nav-link <?php echo (Yii::app()->controller->id == 'transaksi/transaksi') ? 'active' : ''; ?>">
                                     Tindakan & Obat
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?php echo Yii::app()->createUrl('transaksi/tagihan'); ?>" class="nav-link <?php echo (Yii::app()->controller->id == 'transaksi/tagihan') ? 'active' : ''; ?>">
-                                    Tagihan
                                 </a>
                             </li>
                             <li class="nav-item">

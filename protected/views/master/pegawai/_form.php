@@ -6,13 +6,11 @@ $form = $this->beginWidget('CActiveForm', array(
 ));
 ?>
 
-<!-- Personal Information Section on Left -->
 <div class="row mb-4">
     <div class="col-md-6 d-flex align-items-stretch">
         <div class="border p-3 rounded bg-light w-100">
             <h6 class="fw-bold mb-3">Informasi Pribadi</h6>
 
-            <!-- Nama and NIK Row -->
             <div class="form-group mb-3">
                 <?php echo $form->label($model, 'nama', array('class' => 'form-label')); ?>
                 <span style="color:red;">*</span>
@@ -102,7 +100,6 @@ $form = $this->beginWidget('CActiveForm', array(
         </div>
     </div>
 
-    <!-- Address Section on Right -->
     <div class="col-md-6 d-flex align-items-stretch">
         <div class="border p-3 rounded bg-light w-100">
             <h6 class="fw-bold mb-3">Alamat</h6>
@@ -112,7 +109,6 @@ $form = $this->beginWidget('CActiveForm', array(
     </div>
 </div>
 
-<!-- Action Buttons -->
 <div class="action-buttons text-end">
     <button type="button" class="btn btn-primary w-md mb-3" onclick="history.back()">Kembali</button>
     <?php echo CHtml::submitButton('Simpan', array('class' => 'btn btn-success w-md mb-3')); ?>

@@ -1,3 +1,9 @@
+<?php
+if (!Yii::app()->user->isGuest) {
+    $pegawai = Yii::app()->user->getState('pegawai');
+}
+?>
+
 <header id="page-topbar">
     <div class="layout-width">
         <div class="navbar-header">
@@ -57,24 +63,24 @@
                             <!-- User Name -->
                             <span class="text-start ms-xl-2">
                                 <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">
-                                    <?php echo Yii::app()->user->name ?? 'name'; ?>
+                                    <?php echo $pegawai->nama ?? 'name'; ?>
                                 </span>
                             </span>
                         </span>
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
                         <!-- Profile -->
-                        <a class="dropdown-item" href="<?php echo Yii::app()->createUrl('profile/view'); ?>">
+                        <!-- <a class="dropdown-item" href="<?php echo Yii::app()->createUrl('profile/view'); ?>">
                             <i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i>
                             <span class="align-middle">Profil</span>
-                        </a>
+                        </a> -->
                         <!-- Change Password -->
-                        <a class="dropdown-item" href="<?php echo Yii::app()->createUrl('profile/editPassword'); ?>">
+                        <!-- <a class="dropdown-item" href="<?php echo Yii::app()->createUrl('profile/editPassword'); ?>">
                             <i class="mdi mdi-key text-muted fs-16 align-middle me-1"></i>
                             <span class="align-middle" data-key="t-logout">Ubah Password</span>
-                        </a>
+                        </a> -->
                         <!-- Logout -->
-                        <form action="<?php echo Yii::app()->createUrl('site/logout'); ?>" method="POST">
+                        <form action="<?php echo Yii::app()->createUrl('auth/logout'); ?>" method="POST">
                             <button type="submit" class="dropdown-item">
                                 <i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i>
                                 <span class="align-middle" data-key="t-logout">Logout</span>
