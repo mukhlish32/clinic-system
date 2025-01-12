@@ -27,7 +27,9 @@ class Pasien extends CrudModel
 
     public function relations()
     {
-        return [];
+        return [
+            'pasienDaftar' => [self::HAS_MANY, 'PasienDaftar', 'pasien_id'],
+        ];
     }
 
     public function attributeLabels()

@@ -67,7 +67,7 @@ class PasienController extends Controller
                 'telp' => $p->telp,
                 'alamat' => $p->alamat,
                 'status' => StatusEnum::getStatusLabel($p->status),
-                'aksi' => $this->renderPartial('//partials/_actions', [
+                'aksi' => $this->renderPartial('//transaksi/pasien/_actions', [
                     'model' => $p,
                     'location' => 'transaksi/pasien'
                 ], true),
@@ -158,5 +158,31 @@ class PasienController extends Controller
             throw new CHttpException(404, 'The requested page does not exist.');
         }
         return $model;
+    }
+
+    public function actionDaftar($id)
+    {
+        $model = new PasienDaftar();
+        $pasien = Pasien::model()->findByPk($id);
+
+        if (isset($_POST['PasienDaftar'])) {
+            $model->attributes = $_POST['PasienDaftar'];
+            $model->pasien_id = $id;
+
+            if (isset($_POST['PasienDaftar']['tgl_daftar']) && isset($_POST['PasienDaftar']['time_daftar'])) {
+                $dateTime = $_POST['PasienDaftar']['tgl_daftar'] . ' ' . $_POST['PasienDaftar']['time_daftar'];
+                $model->tgl_daftar = date('Y-m-d H:i:s', strtotime($dateTime));
+            }
+
+            if ($model->save()) {
+                Yii::app()->user->setFlash('success', 'Pendaftaran pasien berhasil. Silahkan masuk ke menu Transaksi Tindakan & Obat untuk melanjutkan proses pemeriksaan.');
+                $this->redirect(['index']);
+            } else {
+                Yii::app()->user->setFlash('error', 'Gagal melakukan pendaftaran pasien.');
+            }
+        }
+
+        // Pass the pasien name to the view
+        $this->render('daftar', ['model' => $model, 'pasienId' => $id, 'pasien' => $pasien]);
     }
 }
