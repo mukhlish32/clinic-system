@@ -8,7 +8,7 @@ class m250110_035607_create_pasien_table extends CDbMigration
             'id' => 'pk',
             'nama' => 'string NOT NULL',
 			'nik' => 'string',
-            'alamat' => 'text',
+            'no_bpjs' => 'string',
             'telp' => 'string',
             'email' => 'string',
             'tgl_lahir' => 'date',
@@ -21,6 +21,7 @@ class m250110_035607_create_pasien_table extends CDbMigration
             'kota' => 'string',
             'provinsi' => 'string',
             'kode_pos' => 'varchar(5)',
+            'status' => 'smallint DEFAULT 1',
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
             'deleted_at' => 'datetime',
@@ -31,7 +32,7 @@ class m250110_035607_create_pasien_table extends CDbMigration
 
 	public function down()
 	{
-		$this->dropTable('patients');
+		$this->dropTable('pasien');
 	}
 
 	/*

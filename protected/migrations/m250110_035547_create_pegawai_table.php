@@ -7,19 +7,20 @@ class m250110_035547_create_pegawai_table extends CDbMigration
 		$this->createTable('pegawai', array(
             'id' => 'pk',
             'nama' => 'string NOT NULL',
-            'alamat' => 'text',
-            'telepon' => 'string',
+            'nip' => 'string',
+            'nik' => 'string',
+            'telp' => 'string',
             'email' => 'string',
-            'jenis_kelamin' => 'string',
-            'tanggal_lahir' => 'date',
+            'jns_kelamin' => 'string',
+            'tgl_lahir' => 'date',
             'jabatan' => 'string',
-            'status' => 'string',
             'alamat' => 'string',
             'kelurahan' => 'string',
             'kecamatan' => 'string',
             'kota' => 'string',
             'provinsi' => 'string',
             'kode_pos' => 'varchar(5)',
+            'status' => 'smallint DEFAULT 1',
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
             'deleted_at' => 'datetime',
@@ -34,6 +35,7 @@ class m250110_035547_create_pegawai_table extends CDbMigration
 
 	public function down()
 	{
+        $this->dropForeignKey('fk_pegawai_user', 'pegawai');
 		$this->dropTable('pegawai');
 	}
 

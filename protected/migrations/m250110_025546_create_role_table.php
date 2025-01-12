@@ -6,7 +6,7 @@ class m250110_025546_create_role_table extends CDbMigration
 	{
 		$this->createTable('role', array(
             'id' => 'pk',
-            'name' => 'string NOT NULL',
+            'nama' => 'string NOT NULL',
             'keterangan' => 'text',
 			'created_at' => 'datetime',
             'updated_at' => 'datetime',
