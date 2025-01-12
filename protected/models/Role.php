@@ -19,4 +19,9 @@ class Role extends CrudModel
             array('keterangan', 'safe'),
         );
     }
+
+    public function getPermissions()
+    {
+        return $this->hasMany('Permission', 'role_id');
+    }
 }

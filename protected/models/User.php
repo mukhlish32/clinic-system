@@ -56,4 +56,23 @@ class User extends CrudModel
 
         return parent::beforeSave();
     }
+
+    public function getRole()
+    {
+        return $this->hasOne('Role', 'id', 'role_id');
+    }
+
+    public function hasPermission($menu)
+    {
+        $role = $this->role;
+        $permissions = Permission::model()->findAllByAttributes(['role_id' => $role->id]);
+
+        foreach ($permissions as $permission) {
+            if ($permission->menu == $menu) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
