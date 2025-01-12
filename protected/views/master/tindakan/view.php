@@ -27,7 +27,6 @@
                 <div class="card-body">
                     <?php $this->renderPartial('//partials/_notifications'); ?>
 
-                    <!-- Nama Tindakan -->
                     <div class="row mb-3">
                         <div class="col-md-4">
                             <strong>Nama Tindakan</strong>

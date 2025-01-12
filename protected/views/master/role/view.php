@@ -44,7 +44,6 @@
                         </div>
                     </div>
 
-                    <!-- Render action buttons from the partial -->
                     <?php $this->renderPartial('//partials/_actions-view', [
                         'model' => $model,
                         'location' => 'master/role',

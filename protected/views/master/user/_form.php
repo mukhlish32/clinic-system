@@ -6,7 +6,6 @@ $form = $this->beginWidget('CActiveForm', array(
 ));
 ?>
 
-<!-- Pegawai Selection -->
 <div class="form-group mb-3">
     <?php echo $form->label($model, 'pegawai_id', array('class' => 'form-label')); ?>
     <span style="color:red;">*</span>
@@ -39,7 +38,6 @@ $form = $this->beginWidget('CActiveForm', array(
 </div>
 
 
-<!-- Username -->
 <div class="form-group mb-3">
     <?php echo $form->label($model, 'username', array('class' => 'form-label')); ?>
     <span style="color:red;">*</span>
@@ -61,15 +59,13 @@ $form = $this->beginWidget('CActiveForm', array(
     <?php echo $form->error($model, 'username', array('class' => 'invalid-feedback')); ?>
 </div>
 
-<!-- Email -->
 <div class="form-group mb-3">
     <?php echo $form->label($model, 'email', array('class' => 'form-label')); ?>
     <?php echo $form->textField($model, 'email', array('class' => 'form-control', 'maxlength' => 255)); ?>
     <?php echo $form->error($model, 'email', array('class' => 'invalid-feedback')); ?>
 </div>
 
-<?php if ($model->isNewRecord): ?> <!-- Show these fields only during creation -->
-    <!-- Password -->
+<?php if ($model->isNewRecord): ?>
     <div class="form-group mb-3">
         <?php echo $form->label($model, 'password', array('class' => 'form-label')); ?>
         <span style="color:red;">*</span>
@@ -82,7 +78,6 @@ $form = $this->beginWidget('CActiveForm', array(
         <?php echo $form->error($model, 'password', array('class' => 'invalid-feedback')); ?>
     </div>
 
-    <!-- Confirm Password -->
     <div class="form-group mb-3">
         <?php echo $form->label($model, 'confirm_password', array('class' => 'form-label')); ?>
         <span style="color:red;">*</span>
@@ -96,7 +91,6 @@ $form = $this->beginWidget('CActiveForm', array(
     </div>
 <?php endif; ?>
 
-<!-- Role -->
 <div class="form-group mb-3">
     <?php echo $form->label($model, 'role_id', array('class' => 'form-label')); ?>
     <span style="color:red;">*</span>
@@ -109,7 +103,6 @@ $form = $this->beginWidget('CActiveForm', array(
     <?php echo $form->error($model, 'role_id', array('class' => 'invalid-feedback')); ?>
 </div>
 
-<!-- Action Buttons -->
 <div class="action-buttons text-end">
     <button type="button" class="btn btn-primary w-md mb-3" onclick="history.back()">Kembali</button>
     <?php echo CHtml::submitButton('Simpan', array('class' => 'btn btn-success w-md mb-3')); ?>

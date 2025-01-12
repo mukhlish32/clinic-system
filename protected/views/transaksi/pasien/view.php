@@ -24,12 +24,9 @@
 
         <div class="card-body">
             <?php $this->renderPartial('//partials/_notifications'); ?>
-            <!-- Personal Information and Address Section -->
             <div class="row mb-3">
-                <!-- Personal Information Section -->
                 <div class="col-md-6 d-flex align-items-stretch">
                     <div class="border p-3 rounded bg-light w-100">
-                        <!-- Nama -->
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <strong>Nama</strong>
@@ -39,7 +36,6 @@
                             </div>
                         </div>
 
-                        <!-- NIK and No BPJS -->
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <strong>NIK</strong>
@@ -57,7 +53,6 @@
                             </div>
                         </div>
 
-                        <!-- Tanggal Lahir and Jenis Kelamin -->
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <strong>Tanggal Lahir</strong>
@@ -78,7 +73,6 @@
                             </div>
                         </div>
 
-                        <!-- Telepon and Email -->
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <strong>Telepon</strong>
@@ -96,7 +90,6 @@
                             </div>
                         </div>
 
-                        <!-- Golongan Darah and Agama -->
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <strong>Golongan Darah</strong>
@@ -114,7 +107,6 @@
                             </div>
                         </div>
 
-                        <!-- Status -->
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <strong>Status</strong>
@@ -126,7 +118,6 @@
                     </div>
                 </div>
 
-                <!-- Address Section -->
                 <div class="col-md-6 d-flex align-items-stretch">
                     <div class="border p-3 rounded bg-light w-100">
                         <div class="row mb-3">
@@ -138,7 +129,6 @@
                             </div>
                         </div>
 
-                        <!-- Kelurahan and Kecamatan -->
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <strong>Kelurahan</strong>
@@ -156,7 +146,6 @@
                             </div>
                         </div>
 
-                        <!-- Kota, Provinsi, and Kode Pos -->
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <strong>Kota</strong>

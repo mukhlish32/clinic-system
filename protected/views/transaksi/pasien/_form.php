@@ -6,13 +6,11 @@ $form = $this->beginWidget('CActiveForm', array(
 ));
 ?>
 
-<!-- Personal Information Section -->
 <div class="row mb-4">
     <div class="col-md-6 d-flex align-items-stretch">
         <div class="border p-3 rounded bg-light w-100">
             <h6 class="fw-bold mb-3">Informasi Pribadi</h6>
 
-            <!-- Nama -->
             <div class="form-group mb-3">
                 <?php echo $form->label($model, 'nama', array('class' => 'form-label')); ?>
                 <span style="color:red;">*</span>
@@ -20,7 +18,6 @@ $form = $this->beginWidget('CActiveForm', array(
                 <?php echo $form->error($model, 'nama', array('class' => 'invalid-feedback')); ?>
             </div>
 
-            <!-- NIK and No BPJS -->
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group mb-3">
@@ -39,7 +36,6 @@ $form = $this->beginWidget('CActiveForm', array(
                 </div>
             </div>
 
-            <!-- Tanggal Lahir -->
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group mb-3">
@@ -64,7 +60,6 @@ $form = $this->beginWidget('CActiveForm', array(
                 </div>
             </div>
 
-            <!-- Jenis Kelamin and Telepon -->
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group mb-3">
@@ -84,7 +79,6 @@ $form = $this->beginWidget('CActiveForm', array(
                 </div>
             </div>
 
-            <!-- Golongan Darah -->
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group mb-3">
@@ -128,7 +122,6 @@ $form = $this->beginWidget('CActiveForm', array(
                 </div>
             </div>
 
-            <!-- Status -->
             <?php if (!$model->isNewRecord): ?>
                 <div class="form-group mb-3">
                     <?php echo $form->label($model, 'status', array('class' => 'form-label')); ?>
@@ -148,7 +141,6 @@ $form = $this->beginWidget('CActiveForm', array(
     </div>
 </div>
 
-<!-- Action Buttons -->
 <div class="action-buttons text-end">
     <button type="button" class="btn btn-primary w-md mb-3" onclick="history.back()">Kembali</button>
     <?php echo CHtml::submitButton('Simpan', array('class' => 'btn btn-success w-md mb-3')); ?>

@@ -27,7 +27,6 @@
                 <div class="card-body">
                     <?php $this->renderPartial('//partials/_notifications'); ?>
 
-                    <!-- Username Field -->
                     <div class="row mb-3">
                         <div class="col-md-4">
                             <strong>Username</strong>
@@ -37,7 +36,6 @@
                         </div>
                     </div>
 
-                    <!-- Email Field -->
                     <div class="row mb-3">
                         <div class="col-md-4">
                             <strong>Email</strong>
@@ -47,7 +45,6 @@
                         </div>
                     </div>
 
-                    <!-- Role Field -->
                     <div class="row mb-3">
                         <div class="col-md-4">
                             <strong>Role</strong>
@@ -57,7 +54,6 @@
                         </div>
                     </div>
 
-                    <!-- Pegawai Field -->
                     <div class="row mb-3">
                         <div class="col-md-4">
                             <strong>Pegawai</strong>
@@ -67,7 +63,6 @@
                         </div>
                     </div>
 
-                    <!-- Render action buttons from the partial -->
                     <?php $this->renderPartial('//partials/_actions-view', [
                         'model' => $model,
                         'location' => 'master/user',

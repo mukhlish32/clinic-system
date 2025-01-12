@@ -57,7 +57,7 @@ $(document).ready(function() {
         serverSide: true,
         scrollX: true,
         searchDelay: 1000,
-        autoWidth: false, // Prevent automatic width calculation
+        autoWidth: false,
         ajax: {
             url: '" . Yii::app()->createUrl('master/role/index') . "',
             type: 'GET',
@@ -67,11 +67,11 @@ $(document).ready(function() {
             dataSrc: 'data'
         },
         columns: [
-            { data: 'nama' },  // 'name' will map to the 'Nama' column in the table
-            { data: 'keterangan' }, // 'description' will map to the 'Keterangan' column
-            { data: 'aksi', orderable: false, searchable: false }  // Action buttons (View, Update, Delete)
+            { data: 'nama' },
+            { data: 'keterangan' },
+            { data: 'aksi', orderable: false, searchable: false }
         ],
-        order: [[1, 'asc']] // Default sorting (sort by name in ascending order)
+        order: [[1, 'asc']]
     });
 });
 ", CClientScript::POS_END);

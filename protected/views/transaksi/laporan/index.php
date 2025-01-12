@@ -1,4 +1,3 @@
-<!-- <h1 class="mb-4 text-center">Laporan Grafik Pendaftaran Pasien</h1> -->
 <div class="card shadow-sm">
     <div class="card-header card-primary d-flex justify-content-between align-items-center">
         <h5 class="mb-0 fw-bold text-white">Laporan Grafik Pendaftaran Pasien</h5>
@@ -51,22 +50,19 @@
     </div>
 </div>
 
-<!-- Chart.js Script -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    // Data for the chart
     var dates = <?php echo json_encode($dates); ?>;
     var counts = <?php echo json_encode($counts); ?>;
 
-    // Create the chart
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
-        type: 'line', // Line chart type
+        type: 'line',
         data: {
-            labels: dates, // X-axis labels (dates)
+            labels: dates, // X-axis labels
             datasets: [{
                 label: 'Jumlah Pasien Terdaftar',
-                data: counts, // Y-axis data (patient counts)
+                data: counts, // Y-axis data
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 2,
                 fill: false,

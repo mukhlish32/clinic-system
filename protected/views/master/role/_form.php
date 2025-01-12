@@ -26,7 +26,7 @@ $form = $this->beginWidget('CActiveForm', array(
 
 
 <div class="action-buttons text-end">
-<button type="button" class="btn btn-primary w-md mb-3" onclick="history.back()">Kembali</button>
+    <button type="button" class="btn btn-primary w-md mb-3" onclick="history.back()">Kembali</button>
     <!-- <?php echo CHtml::submitButton($model->isNewRecord ? 'Simpan' : 'Update', array('class' => 'btn btn-success w-md mb-3')); ?> -->
     <?php echo CHtml::submitButton('Simpan', array('class' => 'btn btn-success w-md mb-3')); ?>
 </div>

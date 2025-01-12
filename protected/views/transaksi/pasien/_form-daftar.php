@@ -56,13 +56,8 @@ $form = $this->beginWidget('CActiveForm', array(
                 <?php echo $form->error($model, 'time_daftar', array('class' => 'invalid-feedback')); ?>
             </div>
         </div>
-
     </div>
 </div>
-
-
-
-
 
 <div class="action-buttons text-end">
     <button type="button" class="btn btn-primary w-md mb-3" onclick="history.back()">Kembali</button>
