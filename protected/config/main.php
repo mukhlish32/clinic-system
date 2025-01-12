@@ -82,6 +82,7 @@ return array(
 				*/
 			),
 		),
+		'timeZone' => 'Asia/Jakarta', // Set the timezone to your desired location
 
 	),
 
