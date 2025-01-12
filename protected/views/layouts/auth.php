@@ -10,7 +10,7 @@
     <meta content="Muhammad Mukhlish Syarif" name="author" />
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="<?php echo Yii::app()->baseUrl; ?>/assets/velzon/images/logo/logo-color-notext.png">
+    <link rel="shortcut icon" href="<?php echo Yii::app()->baseUrl; ?>/images/logo/logo-color-notext.png">
 
     <!-- Layout config Js -->
     <script src="<?php echo Yii::app()->baseUrl; ?>/assets/velzon/js/layout.js"></script>

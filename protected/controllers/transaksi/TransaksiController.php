@@ -175,6 +175,18 @@ class TransaksiController extends Controller
             }
 
             if ($model->save()) {
+                $obat = Obat::model()->findByPk($model->obat_id);
+                if ($obat) {
+                    $obat->stok -= $model->jumlah;
+                    if ($obat->stok < 0) {
+                        Yii::app()->user->setFlash('error', 'Stok obat tidak mencukupi.');
+                        $model->delete();
+                        $this->redirect(['createObat', 'norm' => $norm]);
+                    } else {
+                        $obat->save();
+                    }
+                }
+
                 Yii::app()->user->setFlash('success', 'Obat pasien berhasil ditambahkan.');
                 $this->redirect(['view', 'id' => $norm]);
             } else {
@@ -197,9 +209,26 @@ class TransaksiController extends Controller
             throw new CHttpException(404, 'Obat tidak ditemukan.');
         }
 
+        $originalJumlah = $model->jumlah;
+
         if (isset($_POST['PasienObat'])) {
-            $model->attributes = $_POST['Obat'];
+            $model->attributes = $_POST['PasienObat'];
             if ($model->save()) {
+                $obat = Obat::model()->findByPk($model->obat_id);
+                if ($obat) {
+                    $stokChange = $originalJumlah - $model->jumlah;
+                    $obat->stok += $stokChange;
+
+                    if ($obat->stok < 0) {
+                        Yii::app()->user->setFlash('error', 'Stok obat tidak mencukupi.');
+                        $model->jumlah = $originalJumlah;
+                        $model->save();
+                        $this->redirect(['updateObat', 'norm' => $norm, 'id' => $id]);
+                    } else {
+                        $obat->save();
+                    }
+                }
+
                 Yii::app()->user->setFlash('success', 'Obat pasien berhasil diubah.');
                 $this->redirect(['view', 'id' => $model->pasien_daftar_id]);
             } else {
