@@ -142,4 +142,15 @@ class TindakanController extends Controller
         }
         return $model;
     }
+
+    public function actionGetHarga()
+    {
+        if (isset($_POST['id'])) {
+            $tindakan = Tindakan::model()->findByPk($_POST['id']);
+            $harga = $tindakan ? $tindakan->harga : 0;
+
+            echo CJSON::encode(array('harga' => $harga));
+        }
+        Yii::app()->end();
+    }
 }

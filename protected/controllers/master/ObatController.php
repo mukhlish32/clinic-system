@@ -131,4 +131,22 @@ class ObatController extends Controller
         }
         return $model;
     }
+
+    public function actionGetHargaStok()
+    {
+        if (isset($_POST['id'])) {
+            $obat = Obat::model()->findByPk($_POST['id']);
+            if ($obat) {
+                echo json_encode([
+                    'harga' => $obat->harga,
+                    'stok' => $obat->stok,
+                ]);
+            } else {
+                echo json_encode([
+                    'error' => 'Obat not found',
+                ]);
+            }
+        }
+        Yii::app()->end();
+    }
 }
