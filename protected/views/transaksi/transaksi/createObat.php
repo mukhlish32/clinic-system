@@ -8,7 +8,7 @@
                         <li class="breadcrumb-item">
                             <a href="javascript:void(0);">Transaksi</a>
                         </li>
-                        <li class="breadcrumb-item active">Transaksi</li>
+                        <li class="breadcrumb-item active">Pelayanan Pasien</li>
                         <li class="breadcrumb-item active">Tindakan & Obat</li>
                         <li class="breadcrumb-item active">Obat</li>
                     </ol>

@@ -13,8 +13,8 @@ $this->pageTitle = "Tagihan Pasien - " . $pasien->nama;
                         <li class="breadcrumb-item">
                             <a href="javascript:void(0);">Transaksi</a>
                         </li>
-                        <li class="breadcrumb-item active">Pasien</li>
-                        <li class="breadcrumb-item active">List</li>
+                        <li class="breadcrumb-item active">Pelayanan Pasien</li>
+                        <li class="breadcrumb-item active">Tagihan</li>
                     </ol>
                 </div>
             </div>

@@ -108,13 +108,13 @@ class MenuItem extends CApplicationComponent
                 'controller' => 'transaksi',
                 'subMenu' => [
                     [
-                        'label' => 'Pasien & Pendaftaran',
+                        'label' => 'Data Pasien',
                         'url' => Yii::app()->createUrl('transaksi/pasien'),
                         'controller' => 'transaksi/pasien',
                         'actions' => ['index', 'view', 'create', 'update', 'delete', 'register']
                     ],
                     [
-                        'label' => 'Tindakan & Obat',
+                        'label' => 'Pelayanan Pasien',
                         'url' => Yii::app()->createUrl('transaksi/transaksi'),
                         'controller' => 'transaksi/transaksi',
                         'actions' => ['index','view','createTindakan','updateTindakan','createObat','updateObat','setSelesai','setBatal','tagihan']

@@ -3,13 +3,13 @@
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between bg-galaxy-transparent">
-                <h4 class="mb-sm-0">Pasien Daftar</h4>
+                <h4 class="mb-sm-0">Pelayanan Pasien</h4>
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item">
                             <a href="javascript:void(0);">Transaksi</a>
                         </li>
-                        <li class="breadcrumb-item active">Transaksi</li>
+                        <li class="breadcrumb-item active">Pelayanan Pasien</li>
                         <li class="breadcrumb-item active">List</li>
                     </ol>
                 </div>
@@ -20,7 +20,7 @@
 
     <div class="card shadow-sm">
         <div class="card-header card-primary d-flex justify-content-between align-items-center">
-            <h5 class="mb-0 fw-bold text-white">List Pasien Daftar</h5>
+            <h5 class="mb-0 fw-bold text-white">List Pasien Yang Terdaftar</h5>
             <a href="<?php echo Yii::app()->createUrl('transaksi/transaksi/create'); ?>" class="btn btn-sm btn-success btn-label">
                 <i class="ri-add-line label-icon align-middle me-1"></i> Tambah
             </a>
